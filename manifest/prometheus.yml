@@ -51,6 +51,13 @@ spec:
       labels:
         app: prometheus
     spec:
+     initContainers:
+      - name: init-permissions
+        image: busybox
+        command: ['sh', '-c', 'chown -R 1000:2000 /prometheus && chmod -R 775 /prometheus']
+        volumeMounts:
+        - name: prometheus-storage
+          mountPath: /prometheus
       containers:
       - name: prometheus
         image: prom/prometheus:latest
@@ -62,8 +69,6 @@ spec:
         securityContext: 
           runAsuser: 1000
           fsGroup: 2000
-          allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
       volumes:
       - name: prometheus-storage
         persistentVolumeClaim:
