@@ -51,7 +51,7 @@ spec:
       labels:
         app: prometheus
     spec:
-     initContainers:
+      initContainers:
       - name: init-permissions
         image: busybox
         command: ['sh', '-c', 'chown -R 1000:2000 /prometheus && chmod -R 775 /prometheus']
