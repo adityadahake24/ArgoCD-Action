@@ -58,8 +58,6 @@ spec:
         - containerPort: 9090
         volumeMounts:
         - name: prometheus-storage
-          presistentVolume:
-          name: prometheus-pv
           mountPath: /prometheus
         securityContext: 
           runAsuser: 1000
