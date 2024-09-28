@@ -59,6 +59,9 @@ spec:
         volumeMounts:
         - name: prometheus-storage
           mountPath: /prometheus
+        securityContext: 
+          runAsuser: 1000
+          fsGroup: 2000
       volumes:
       - name: prometheus-storage
         persistentVolumeClaim:
