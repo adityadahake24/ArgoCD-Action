@@ -60,7 +60,7 @@ spec:
           mountPath: /prometheus
       containers:
       - name: prometheus
-        image: prom/prometheus:latest
+        image: prom/prometheus:v2.54.1
         ports:
         - containerPort: 9090
         volumeMounts:
@@ -69,6 +69,8 @@ spec:
         securityContext: 
           runAsuser: 1000
           fsGroup: 2000
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
       volumes:
       - name: prometheus-storage
         persistentVolumeClaim:
